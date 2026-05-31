@@ -10,7 +10,7 @@ exports.aliasTopTours = (req, res, next) => {
   next();
 };
 
-exports.getAllTours = catchAsync(async (req, res) => {
+exports.getAllTours = catchAsync(async (req, res, next) => {
   //EXECUTE QUERY
   const fetures = new APIFeatures(Tour.find(), req.query)
     .filter()
@@ -88,7 +88,7 @@ exports.deleteTour = catchAsync(async (req, res, next) => {
 });
 
 // Aggregate Pipeline
-exports.getTourStats = catchAsync(async (req, res) => {
+exports.getTourStats = catchAsync(async (req, res, next) => {
   const stats = await Tour.aggregate([
     {
       $match: { ratingsAverage: { $gte: 4.5 } },
@@ -121,7 +121,7 @@ exports.getTourStats = catchAsync(async (req, res) => {
   });
 });
 
-exports.getMonthlyPlan = catchAsync(async (req, res) => {
+exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
   const year = req.params.year * 1; //2021
 
   const plan = await Tour.aggregate([
