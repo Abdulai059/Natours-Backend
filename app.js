@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev')); // this is a middleware that logs the request method, url, status code and response time to the console
 }
 
-app.use(express.json()); // this is a middleware that allows us to parse JSON data from the re quest body
+app.use(express.json()); // this is a middleware that allows us to parse JSON data from the request body
 
 app.use(express.static(`${__dirname}/public`));
 
