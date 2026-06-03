@@ -52,6 +52,16 @@ exports.updateMe = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.deleteMe = catchAsync(async (req, res, next) => {
+  // 1) Update user document to inactive
+  await User.findByIdAndUpdate(req.user.id, { active: false });
+
+  res.status(204).json({
+    status: 'success',
+    data: null,
+  });
+});
+
 exports.getUser = catchAsync(async (req, res) => {
   const user = await User.findById(req.params.id);
   res.status(200).json({
