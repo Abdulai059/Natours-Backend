@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const { promisify } = require('util');
 const jwt = require('jsonwebtoken');
 const catchAsync = require('../utils/catchAsync');
-const User = require('./../models/userModule');
+const User = require('./../models/userModel');
 const AppError = require('./../utils/AppError');
 const sendEmail = require('./../utils/email');
 
@@ -15,6 +15,7 @@ const signToken = (id) => {
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
 
+  // Set cookie options
   const cookieOptions = {
     expires: new Date(
       Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
@@ -24,6 +25,7 @@ const createSendToken = (user, statusCode, res) => {
 
   if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
 
+  // Set JWT cookie
   res.cookie('jwt', token, cookieOptions);
 
   // Remove password from output
