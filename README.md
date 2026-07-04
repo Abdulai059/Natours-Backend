@@ -1,6 +1,6 @@
 # Natours API
 
-A powerful RESTful API backend for a tour booking application built with Node.js, Express, and MongoDB.
+A powerful RESTful API backend for a tour booking application built with Node.js, Express, and MongoDB..
 
 ## 📝 Description
 
